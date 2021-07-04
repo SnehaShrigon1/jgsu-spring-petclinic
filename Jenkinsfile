@@ -8,8 +8,11 @@ pipeline {
         // implicit checkout stage
 
         stage('Build') {
+            // steps {
+            //     sh './mvnw clean package'
+            // }
             steps {
-                sh './mvnw clean package'
+                bat "./mvnw spring-javaformat:apply clean package"
             }
         }
     }

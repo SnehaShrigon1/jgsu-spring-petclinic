@@ -37,6 +37,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.NamedEntity;
 import org.springframework.samples.petclinic.visit.Visit;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Simple business object representing a pet.
  *
@@ -46,6 +49,8 @@ import org.springframework.samples.petclinic.visit.Visit;
  */
 @Entity
 @Table(name = "pets")
+@Getter
+@Setter
 public class Pet extends NamedEntity {
 
 	@Column(name = "birth_date")
@@ -63,29 +68,8 @@ public class Pet extends NamedEntity {
 	@Transient
 	private Set<Visit> visits = new LinkedHashSet<>();
 
-	public void setBirthDate(LocalDate birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	public LocalDate getBirthDate() {
-		return this.birthDate;
-	}
-
-	public PetType getType() {
-		return this.type;
-	}
-
-	public void setType(PetType type) {
-		this.type = type;
-	}
-
-	public Owner getOwner() {
-		return this.owner;
-	}
-
-	protected void setOwner(Owner owner) {
-		this.owner = owner;
-	}
+	@Column(name = "nick_name")
+	private String nickName;
 
 	protected Set<Visit> getVisitsInternal() {
 		if (this.visits == null) {
